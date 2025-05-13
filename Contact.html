@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: rgba(128, 128, 128, 0.15);
+            backdrop-filter: blur(25px);
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        .Header {
+            background: rgba(236, 191, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 20px;
+            margin: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .Header p {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(90deg, #7b2ff7, #f107a3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #4b0082;
+            font-size: 14px;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .links a:hover {
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .contact-container {
+            margin-top: 120px; 
+            background: linear-gradient(135deg, rgba(236, 191, 255, 0.3), rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 85%;
+            padding: 10px 12px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #a455f7;
+            box-shadow: 0 0 5px rgba(164, 85, 247, 0.4);
+            outline: none;
+        }
+
+        label {
+            font-size: 15px;
+            color: #4b0082;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+      button[type="submit"] {
+    padding: 10px 40px;
+    background: linear-gradient(90deg, #7b2ff7, #f107a3);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto; 
+}
+
+        button[type="submit"]:hover {
+            background: linear-gradient(90deg, #f107a3, #7b2ff7);
+        }
+
+        #warningMessage {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .thank-you-message {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #4b0082;
+            margin-top: 20px;
+            animation: fadeInOut 3s infinite;
+            display: none;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .Header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 20px;
+            }
+
+            .links {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .contact-container {
+                margin: 20px auto;
+                padding: 15px;
+                max-width: 90%;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            textarea,
+            button[type="submit"] {
+                width: 95%;
+                font-size: 14px;
+            }
+
+            .thank-you-message {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .Header p {
+                font-size: 20px;
+            }
+
+            .contact-container h2 {
+                font-size: 20px;
+                text-align: center;
+            }
+
+            label {
+                font-size: 14px;
+            }
+
+            button[type="submit"] {
+                padding: 8px 16px;
+            }
+        }
+           .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            position: absolute;
+            top: 9px;
+            right: 15px;
+            z-index: 1100;
+        }
+    .menu-toggle span {
+        background: #7b2ff7;
+        height: 3px;
+        width: 25px;
+        margin: 4px 0;
+        border-radius: 5px;
+        transition: 0.4s;
+    }
+    @media (max-width: 768px) {
+        .menu-toggle {
+            display: flex;
+        }
+
+        .links {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 40px;
+            right: 15px;
+            background: rgba(236, 191, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            z-index: 1100;
+        }
+
+        .links.show {
+            display: flex;
+        }
+    }
+    
+    </style>
+</head>
+<body>
+    <div class="Header">
+        <p class="p1">Contact</p>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="links">
+            <a href="index.html">Home</a>
+            <a href="Aboutme.html">About Me</a>
+            <a href="Projects.html">Projects</a>
+            <a href="Contact.html">Contact</a>
+        </nav>
+    </div>
+    <div class="contact-h2" style="text-align: center; margin-top: 100px;">
+       <h2 style="color: #4b0082;">Get in Touch</h2>
+    </div>
+    <center>
+    <div class="contact-container" style="margin-top: 50px; text-align: center;">
+        <form id="contactForm" action="https://formsubmit.co/velmani215@gmail.com" method="POST">
+          <p><label><strong>Name:</strong><br><input type="text" name="Name" id="name" required></label></p>
+          <p><label><strong>Email:</strong><br><input type="email" name="E-mail" id="email" required></label></p>
+          <p><label><strong>Phone no:</strong><br><input type="tel" name="Phone no" id="phone" pattern="\d{10}" maxlength="10" required title="Phone number must be exactly 10 digits." oninput="this.value=this.value.replace(/\D/g,'');"></label></p>
+          <p><label><strong>Description:</strong><br><textarea name="Description" id="description" required></textarea></label></p>
+          <p><button type="submit">Submit</button></p>
+        </form>
+        <div id="warningMessage"></div>
+    </div>
+    </center>
+    <script>
+  function toggleMenu() {
+      document.querySelector('.links').classList.toggle('show');
+  }
+</script>
+</body>
+</html>
