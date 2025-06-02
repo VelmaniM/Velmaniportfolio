@@ -55,6 +55,7 @@
 
         .contact-container {
             margin-top: 120px; 
+            margin: 0 auto;
             background: linear-gradient(135deg, rgba(236, 191, 255, 0.3), rgba(255, 255, 255, 0.1));
             backdrop-filter: blur(20px);
             padding: 20px;
@@ -234,6 +235,11 @@
 <body>
     <div class="Header">
         <p class="p1">Contact</p>
+        <div class="menu-toggle" onclick="toggleMenu()">
+           <span></span>
+           <span></span>
+           <span></span>
+       </div>
         <nav class="links">
             <a href="index.html">Home</a>
             <a href="Aboutme.html">About Me</a>
@@ -244,9 +250,16 @@
     <div class="contact-h2" style="text-align: center; margin-top: 100px;">
        <h2 style="color: #4b0082;">Get in Touch</h2>
     </div>
-    <center>
+    <div class="contact-info-container" style="max-width: 500px; margin: 60px auto 20px auto; background: linear-gradient(135deg, rgba(236, 191, 255, 0.3), rgba(255, 255, 255, 0.1)); backdrop-filter: blur(20px); padding: 30px; border-radius: 16px; box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2); border: 1px solid rgba(255, 255, 255, 0.18);">
+        <h2 style="color: #000; font-size: 22px; margin-bottom: 20px;">Contact Information</h2>
+        <p><strong style="text-decoration: underline;">Email Us</strong><br><br><a href="mailto:hello@teamartify.com" style="color: #7b2ff7;">velmani215@gmail.com</a></p>
+        <p><strong style="text-decoration: underline;">Location</strong><br><br> Madurai,India</p>
+        <p><strong style="text-decoration: underline;">Contacting Hours</strong><br><br>Monday – Friday: 9:00 AM – 6:00 PM IST</p>
+        <p><strong style="text-decoration: underline;">Phone Number</strong><br><br>9600487102, 9047763848</p>
+    </div>
+
     <form id="contact-form" method="POST">
-      <div class="contact-container" style="margin-top: 50px; text-align: center;">
+      <div class="contact-container" style="margin: 50px auto 0 auto; text-align: center;">
             <p><label><strong>Name:</strong><br><input type="text" name="name" id="name" required></label></p>
             <p><label><strong>Email:</strong><br><input type="email" name="email" id="email" required></label></p>
             <p><label><strong>Phone no:</strong><br><input type="tel" name="phone" id="phone" pattern="\d{10}" maxlength="10" required title="Phone number must be exactly 10 digits." oninput="this.value=this.value.replace(/\D/g,'');"></label></p>
@@ -256,7 +269,6 @@
             <div id="response-message" class="thank-you-message"></div>
       </div>
     </form>
-    </center>
    <!-- EmailJS Script -->
   <script type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
@@ -291,5 +303,10 @@
         });
     });
   </script>
+  <script>
+  function toggleMenu() {
+      document.querySelector('.links').classList.toggle('show');
+  }
+</script>
 </body> 
 </html>
