@@ -234,11 +234,6 @@
 <body>
     <div class="Header">
         <p class="p1">Contact</p>
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
         <nav class="links">
             <a href="index.html">Home</a>
             <a href="Aboutme.html">About Me</a>
@@ -250,21 +245,51 @@
        <h2 style="color: #4b0082;">Get in Touch</h2>
     </div>
     <center>
-    <div class="contact-container" style="margin-top: 50px; text-align: center;">
-        <form id="contactForm" action="https://formsubmit.co/velmani215@gmail.com" method="POST">
-          <p><label><strong>Name:</strong><br><input type="text" name="Name" id="name" required></label></p>
-          <p><label><strong>Email:</strong><br><input type="email" name="E-mail" id="email" required></label></p>
-          <p><label><strong>Phone no:</strong><br><input type="tel" name="Phone no" id="phone" pattern="\d{10}" maxlength="10" required title="Phone number must be exactly 10 digits." oninput="this.value=this.value.replace(/\D/g,'');"></label></p>
-          <p><label><strong>Description:</strong><br><textarea name="Description" id="description" required></textarea></label></p>
-          <p><button type="submit">Submit</button></p>
-        </form>
-        <div id="warningMessage"></div>
-    </div>
+    <form id="contact-form" method="POST">
+      <div class="contact-container" style="margin-top: 50px; text-align: center;">
+            <p><label><strong>Name:</strong><br><input type="text" name="name" id="name" required></label></p>
+            <p><label><strong>Email:</strong><br><input type="email" name="email" id="email" required></label></p>
+            <p><label><strong>Phone no:</strong><br><input type="tel" name="phone" id="phone" pattern="\d{10}" maxlength="10" required title="Phone number must be exactly 10 digits." oninput="this.value=this.value.replace(/\D/g,'');"></label></p>
+            <p><label><strong>Description:</strong><br><textarea name="message" id="description" required></textarea></label></p>
+            <p><button type="submit">Submit</button></p>
+            <div id="warningMessage"></div>
+            <div id="response-message" class="thank-you-message"></div>
+      </div>
+    </form>
     </center>
-    <script>
-  function toggleMenu() {
-      document.querySelector('.links').classList.toggle('show');
-  }
-</script>
-</body>
+   <!-- EmailJS Script -->
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+
+  <script type="text/javascript">
+    (function () {
+      emailjs.init({
+        publicKey: "OGoWLC-FcDo-EBJ3c", 
+      });
+    })();
+
+    document.getElementById("contact-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      
+      const form = this;
+      
+      emailjs.sendForm('service_r9pvwxa', 'template_l5xvcwg', form)
+        .then(function () {
+          alert("Mail has been sent!");
+          const response = document.getElementById("response-message");
+          response.className = "thank-you-message";
+          response.style.display = "block";
+          response.textContent = "Message sent successfully!";
+          document.getElementById("contact-form").reset();
+        }, function (error) {
+          const response = document.getElementById("response-message");
+          response.className = "thank-you-message";
+          response.style.display = "block";
+          response.textContent = "Failed to send message. Please try again.";
+          console.error("EmailJS Error:", error);
+        });
+    });
+  </script>
+</body> 
 </html>
